@@ -1,0 +1,29 @@
+﻿<Window x:Class="HH.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HH"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="789">
+    <Grid Margin="0,0,23,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="155*"/>
+            <RowDefinition Height="268*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TbDescryption" HorizontalAlignment="Left" Margin="417,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="220" Width="328" Grid.RowSpan="2">
+
+        </TextBlock>
+        <Button x:Name="SearchButton" Content="Поиск" HorizontalAlignment="Left" Margin="23,60,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.5,0.5" Height="30" Click="Button_Click"/>
+        <TextBox x:Name="SearchText" HorizontalAlignment="Left" Height="20" Margin="23,30,0,0" TextWrapping="Wrap" Text="Системный админстратор Москва 60000" VerticalAlignment="Top" Width="312"/>
+        <DataGrid x:Name="ResultGrid" HorizontalAlignment="Left" Height="225" Margin="23,104,0,0" VerticalAlignment="Top" Width="380" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="ResultGrid_SelectionChanged" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Path=Name}" Width="250" />
+                <DataGridTextColumn Header="ЗП от" Binding="{Binding Path=MinSalary}" Width="50" />
+                <DataGridTextColumn Header="ЗП до" Binding="{Binding Path=MaxSalary}" Width="50" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="LabelPages" Content="Страница " HorizontalAlignment="Left" Margin="79,187,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button x:Name="NextButton" Content=">>" HorizontalAlignment="Left" Margin="20,185,0,0" VerticalAlignment="Top" Width="45" Height="30" Grid.Row="1" RenderTransformOrigin="1.167,0.5" Click="NextButton_Click"/>
+    </Grid>
+</Window>
