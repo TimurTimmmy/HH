@@ -23,8 +23,8 @@
                 <DataGridTextColumn Header="ЗП до" Binding="{Binding Path=MaxSalary}" Width="50" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="LabelPages" Content="Страница " HorizontalAlignment="Left" Margin="79,187,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Button x:Name="NextButton" Content=">>" HorizontalAlignment="Left" Margin="20,185,0,0" VerticalAlignment="Top" Width="45" Height="30" Grid.Row="1" RenderTransformOrigin="1.167,0.5" Click="NextButton_Click"/>
+        <Label x:Name="LabelPages" Content="Страница " HorizontalAlignment="Left" Margin="58,187.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button x:Name="NextButton" IsEnabled="False" Content=">>" HorizontalAlignment="Left" Margin="23,185.4,0,0" VerticalAlignment="Top" Width="30" Height="30" Grid.Row="1" RenderTransformOrigin="1.167,0.5" Click="NextButton_Click"/>
         <TextBlock x:Name="UrlLabel" HorizontalAlignment="Left" Margin="440,236.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" />
     </Grid>
 </Window>

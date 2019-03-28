@@ -19,7 +19,6 @@ namespace HH
         /// Работадатель
         /// Координаты, метро, подсветка по цвету линии метро
         /// Поситчать среднюю ЗП
-        /// задисаблить кнопки
 
     public partial class MainWindow : Window
     {
@@ -71,6 +70,7 @@ namespace HH
             ResultGrid.ItemsSource = VacList;
             ResultGrid.SelectionChanged += ResultGrid_SelectionChanged;
             LabelPages.Content = string.Format("Страница {0}", curpage);
+            NextButton.IsEnabled = true;
         }
 
         private void ResultGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
