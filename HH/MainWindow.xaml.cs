@@ -11,11 +11,6 @@ using Newtonsoft.Json.Linq;
 
 namespace HH
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    
-        /// Выводить кол-во страниц по радиобатону
         /// Работадатель
         /// Координаты, метро, подсветка по цвету линии метро
         /// Поситчать среднюю ЗП
@@ -30,6 +25,7 @@ namespace HH
         public int pages;
         public int curpage;
         public int found;
+        public int vacpp;
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +35,7 @@ namespace HH
  
         public string Get_http()
         {
-            string url = string.Format(@"https://api.hh.ru/vacancies?per_page=100&page={1}&text={0}", SearchText.Text, curpage);
+            string url = string.Format(@"https://api.hh.ru/vacancies?per_page={2}&page={1}&text={0}", SearchText.Text, curpage, vacpp);
             CookieContainer cookies = new CookieContainer();
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);            
             req.UserAgent = "ash123@mail.ru";
@@ -78,7 +74,7 @@ namespace HH
             UrlLabel.Text = null;
             DataGrid vac = (DataGrid)sender;
             Vacancy VacId = (Vacancy)vac.SelectedValue;
-            TbDescryption.Text = "Краткое описание: \n" + VacId.Description;
+            TbDescryption.Text = "Краткое описание: \n" + VacId.Description + "\n";
             Hyperlink hyperLink = new Hyperlink()
             {
                 NavigateUri = new System.Uri(VacId.Url)
@@ -102,6 +98,12 @@ namespace HH
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton pressed = (RadioButton)sender;
+            vacpp = int.Parse((string)pressed.Content);
         }
     }
 }

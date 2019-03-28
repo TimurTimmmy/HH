@@ -25,6 +25,10 @@
         </DataGrid>
         <Label x:Name="LabelPages" Content="Страница " HorizontalAlignment="Left" Margin="58,187.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Button x:Name="NextButton" IsEnabled="False" Content=">>" HorizontalAlignment="Left" Margin="23,185.4,0,0" VerticalAlignment="Top" Width="30" Height="30" Grid.Row="1" RenderTransformOrigin="1.167,0.5" Click="NextButton_Click"/>
-        <TextBlock x:Name="UrlLabel" HorizontalAlignment="Left" Margin="440,236.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" />
+        <TextBlock x:Name="UrlLabel" HorizontalAlignment="Left" Margin="440,179.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" />
+        <RadioButton GroupName="VacPP" Content="20" HorizontalAlignment="Left" Margin="31,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" IsChecked="True" Checked="RadioButton_Checked"/>
+        <RadioButton GroupName="VacPP" Content="50" HorizontalAlignment="Left" Margin="73,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton GroupName="VacPP" Content="100" HorizontalAlignment="Left" Margin="113,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <GroupBox Header="Вакасний на страницу" HorizontalAlignment="Left" Height="35" Margin="23,222.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="137"/>
     </Grid>
 </Window>
