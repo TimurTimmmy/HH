@@ -8,6 +8,8 @@ namespace HH
         private string description;
         private string minsalary;
         private string maxsalary;
+        private string url;
+
         public string Id
         {
             get { return id; }
@@ -33,14 +35,20 @@ namespace HH
             get { return description; }
             set { description = value; }
         }
+        public string Url
+        {
+            get { return url; }
+            set { url = value; }
+        }
 
-        public Vacancy(string Id, string Name, string MinSalary, string MaxSalary, string Description)
+        public Vacancy(string Id, string Name, string MinSalary, string MaxSalary, string Description, string URL)
         {
             this.Id = Id;
             this.Name = Name;
             this.MinSalary = MinSalary;
             this.MaxSalary = MaxSalary;
             this.Description = Description;
+            this.Url = URL;
         }
 
         public Vacancy(string Id, string Name, string Description)
@@ -50,6 +58,7 @@ namespace HH
             this.MinSalary = "не указано";
             this.MaxSalary = "не указано";
             this.Description = Description;
+            this.Url = "нет ссылки";
         }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Navigation;
 using Newtonsoft.Json.Linq;
 
 namespace HH
@@ -15,8 +18,8 @@ namespace HH
         /// Выводить кол-во страниц по радиобатону
         /// Работадатель
         /// Координаты, метро, подсветка по цвету линии метро
-        /// ссылка на вакансию
         /// Поситчать среднюю ЗП
+        /// задисаблить кнопки
 
     public partial class MainWindow : Window
     {
@@ -62,7 +65,7 @@ namespace HH
             found = (int)VacObj["found"];
             var items = from jVac in VacObj["items"]
                         select new Vacancy((string)jVac["id"], (string)jVac["name"], (string)jVac["salary"]["from"], (string)jVac["salary"]["to"], 
-                        (string)jVac["snippet"]["requirement"]+ "\n" + (string)jVac["snippet"]["responsibility"] );
+                        (string)jVac["snippet"]["requirement"]+ "\n" + (string)jVac["snippet"]["responsibility"], (string)jVac["alternate_url"]);
             foreach (var it in items) { VacList.Add(it); }
             ResultGrid.SelectionChanged -= ResultGrid_SelectionChanged;
             ResultGrid.ItemsSource = VacList;
@@ -75,6 +78,13 @@ namespace HH
             DataGrid vac = (DataGrid)sender;
             Vacancy VacId = (Vacancy)vac.SelectedValue;
             TbDescryption.Text = "Краткое описание: \n" + VacId.Description;
+            Hyperlink hyperLink = new Hyperlink()
+            {
+                NavigateUri = new System.Uri(VacId.Url)
+            };
+            hyperLink.Inlines.Add(VacId.Url);
+            hyperLink.RequestNavigate += Hyperlink_RequestNavigate;
+            UrlLabel.Inlines.Add(hyperLink);
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
@@ -85,8 +95,12 @@ namespace HH
                 LabelPages.Content = string.Format("Страница {0}", curpage);
                 LoadResult(Get_http());
             }
-        }   
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
     }
 }
-
-
