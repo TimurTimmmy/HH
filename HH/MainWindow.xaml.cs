@@ -75,6 +75,7 @@ namespace HH
 
         private void ResultGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            UrlLabel.Text = null;
             DataGrid vac = (DataGrid)sender;
             Vacancy VacId = (Vacancy)vac.SelectedValue;
             TbDescryption.Text = "Краткое описание: \n" + VacId.Description;
