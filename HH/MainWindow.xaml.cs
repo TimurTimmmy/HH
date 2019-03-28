@@ -31,13 +31,13 @@ namespace HH
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string req = SearchText.Text;
-            string url = string.Format(@"https://api.hh.ru/vacancies?per_page=100&page={1}&text={0}", req, curpage);
-            LoadResult(Get_http(url));
+            LoadResult(Get_http());
             MessageBox.Show("Найдено " + found + " вакансий.", "Результат");
         }
-        public string Get_http(string url)
+ 
+        public string Get_http()
         {
+            string url = string.Format(@"https://api.hh.ru/vacancies?per_page=100&page={1}&text={0}", SearchText.Text, curpage);
             CookieContainer cookies = new CookieContainer();
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);            
             req.UserAgent = "ash123@mail.ru";
@@ -83,9 +83,7 @@ namespace HH
             {                
                 curpage += 1;
                 LabelPages.Content = string.Format("Страница {0}", curpage);
-                string req = SearchText.Text;
-                string url = string.Format(@"https://api.hh.ru/vacancies?per_page=100&page={1}&text={0}", req, curpage);
-                LoadResult(Get_http(url));
+                LoadResult(Get_http());
             }
         }   
     }
