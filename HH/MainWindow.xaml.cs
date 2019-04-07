@@ -62,8 +62,14 @@ namespace HH
             curpage = (int)VacObj["page"];
             found = (int)VacObj["found"];
             var items = from jVac in VacObj["items"]
-                        select new Vacancy((string)jVac["id"], (string)jVac["name"], (string)jVac["salary"]["from"], (string)jVac["salary"]["to"], 
-                        (string)jVac["snippet"]["requirement"]+ "\n" + (string)jVac["snippet"]["responsibility"], (string)jVac["alternate_url"]);
+                        where jVac["address"].HasValues where jVac["address"]["metro"].HasValues where jVac["employer"]["logo_urls"].HasValues
+                        select new Vacancy
+                        (
+                        (string)jVac["id"], (string)jVac["name"], (string)jVac["salary"]["from"], (string)jVac["salary"]["to"], 
+                        (string)jVac["snippet"]["requirement"]+ "\n" + (string)jVac["snippet"]["responsibility"], (string)jVac["alternate_url"],
+                        new Employer((string)jVac["employer"]["name"], (string)jVac["address"]["city"], (string)jVac["address"]["metro"]["station_name"], 
+                        (string)jVac["address"]["metro"]["line_id"], (string)jVac["address"]["street"], (string)jVac["address"]["building"], (string)jVac["employer"]["logo_urls"]["original"]) 
+                        );
             foreach (var it in items) { VacList.Add(it); }
             AVGL(VacList);
             ResultGrid.SelectionChanged -= ResultGrid_SelectionChanged;
@@ -78,7 +84,7 @@ namespace HH
             UrlLabel.Text = null;
             DataGrid vac = (DataGrid)sender;
             Vacancy VacId = (Vacancy)vac.SelectedValue;
-            TbDescryption.Text = "Краткое описание: \n" + VacId.Description + "\n";
+            TbDescryption.Text = "Краткое описание: \n" + VacId.Description + "\n" ;
             Hyperlink hyperLink = new Hyperlink()
             {
                 NavigateUri = new System.Uri(VacId.Url)

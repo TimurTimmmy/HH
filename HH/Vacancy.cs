@@ -8,6 +8,8 @@
         private string minsalary;
         private string maxsalary;
         private string url;
+        private Employer employer;
+
 
         public string Id
         {
@@ -40,7 +42,9 @@
             set { url = value; }
         }
 
-        public Vacancy(string Id, string Name, string MinSalary, string MaxSalary, string Description, string URL)
+        public Employer Employer { get => employer; set => employer = value; }
+
+        public Vacancy(string Id, string Name, string MinSalary, string MaxSalary, string Description, string URL, Employer employer)
         {
             this.Id = Id;
             this.Name = Name;
@@ -48,6 +52,7 @@
             this.MaxSalary = MaxSalary;
             this.Description = Description;
             this.Url = URL;
+            this.Employer = employer;
         }
 
         public Vacancy(string Id, string Name, string Description)

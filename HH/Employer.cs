@@ -20,13 +20,22 @@
 
         public Employer(string name, string city, string metro, string line_id, string street, string building, string logo_urls)
         {
-            this.Name = name;
-            this.City = city;
-            this.Metro = metro;
-            this.Line_id = line_id;
-            this.Street = street;
-            this.Building = building;
-            this.Logo_urls = logo_urls;
+            this.Name = NotNull(name);
+            this.City = NotNull(city);
+            this.Metro = NotNull(metro);
+            this.Line_id = NotNull(line_id);
+            this.Street = NotNull(street);
+            this.Building = NotNull(building);
+            this.Logo_urls = NotNull(logo_urls);
         }
+
+        private string NotNull(string value)
+        {
+            if (
+                value == null || value == "" || value == string.Empty || value.Length == 0  
+               ) return value;
+            else return "Не указано";                    
+        }     
+
     }
 }
