@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace HH
 {
         /// Работадатель
         /// Координаты, метро, подсветка по цвету линии метро
-        /// Поситчать среднюю ЗП
+        /// логгирование исключений в файл
+        /// исключения
 
     public partial class MainWindow : Window
     {
@@ -26,7 +28,7 @@ namespace HH
         public int curpage;
         public int found;
         public int vacpp;
-        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             LoadResult(Get_http());
@@ -53,8 +55,8 @@ namespace HH
 
         public void LoadResult(string jstring)
         {
-            List<Vacancy> VacList = new List<Vacancy>();
-            JObject VacObj = JObject.Parse(jstring);
+            var VacList = new List<Vacancy>();
+            var VacObj = JObject.Parse(jstring);
             pages = (int)VacObj["pages"];
             curpage = (int)VacObj["page"];
             found = (int)VacObj["found"];
@@ -62,6 +64,7 @@ namespace HH
                         select new Vacancy((string)jVac["id"], (string)jVac["name"], (string)jVac["salary"]["from"], (string)jVac["salary"]["to"], 
                         (string)jVac["snippet"]["requirement"]+ "\n" + (string)jVac["snippet"]["responsibility"], (string)jVac["alternate_url"]);
             foreach (var it in items) { VacList.Add(it); }
+            AVGL(VacList);
             ResultGrid.SelectionChanged -= ResultGrid_SelectionChanged;
             ResultGrid.ItemsSource = VacList;
             ResultGrid.SelectionChanged += ResultGrid_SelectionChanged;
@@ -69,7 +72,7 @@ namespace HH
             NextButton.IsEnabled = true;
         }
 
-        private void ResultGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ResultGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UrlLabel.Text = null;
             DataGrid vac = (DataGrid)sender;
@@ -104,6 +107,20 @@ namespace HH
         {
             RadioButton pressed = (RadioButton)sender;
             vacpp = int.Parse((string)pressed.Content);
+            curpage = 0;
+        }
+
+        private void AVGL(List<Vacancy> list)
+        {
+            int max = 0;
+            int min = 0;
+            foreach (var it in list)
+            {
+                 max += Convert.ToInt32(it.MaxSalary) / list.Count;
+                 min += Convert.ToInt32(it.MinSalary) / list.Count;
+            }
+            double result = (max + min) / 2;
+            AvgSalary.Content = "Средняя ЗП = " + result.ToString();
         }
     }
 }

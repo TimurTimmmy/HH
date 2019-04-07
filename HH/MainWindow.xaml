@@ -11,7 +11,7 @@
             <RowDefinition Height="155*"/>
             <RowDefinition Height="268*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="TbDescryption" HorizontalAlignment="Left" Margin="417,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="220" Width="328" Grid.RowSpan="2">
+        <TextBlock x:Name="TbDescryption" HorizontalAlignment="Left" Margin="417,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="220" Width="342" Grid.RowSpan="2">
 
         </TextBlock>
         <Button x:Name="SearchButton" Content="Поиск" HorizontalAlignment="Left" Margin="23,60,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.5,0.5" Height="30" Click="Button_Click"/>
@@ -30,5 +30,6 @@
         <RadioButton GroupName="VacPP" Content="50" HorizontalAlignment="Left" Margin="73,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <RadioButton GroupName="VacPP" Content="100" HorizontalAlignment="Left" Margin="113,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <GroupBox Header="Вакасний на страницу" HorizontalAlignment="Left" Height="35" Margin="23,222.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="137"/>
+        <Label x:Name="AvgSalary" Content="Средняя ЗП = " HorizontalAlignment="Left" Margin="175,62,0,0" VerticalAlignment="Top" Width="160"/>
     </Grid>
 </Window>
