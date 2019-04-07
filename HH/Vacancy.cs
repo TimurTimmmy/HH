@@ -1,5 +1,4 @@
-﻿
-namespace HH
+﻿namespace HH
 {
     public class Vacancy
     {
