@@ -1,41 +1,30 @@
-﻿namespace HH
+﻿using Newtonsoft.Json;
+
+namespace HH
 {
-    public class Employer
+    public partial class Employer
     {
-        private string name;
-        private string city;
-        private string metro;
-        private string line_id;
-        private string street;
-        private string building;
-        private string logo_urls;
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string Name { get => name; set => name = value; }
-        public string City { get => city; set => city = value; }
-        public string Metro { get => metro; set => metro = value; }
-        public string Line_id { get => line_id; set => line_id = value; }
-        public string Street { get => street; set => street = value; }
-        public string Building { get => building; set => building = value; }
-        public string Logo_urls { get => logo_urls; set => logo_urls = value; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public Employer(string name, string city, string metro, string line_id, string street, string building, string logo_urls)
-        {
-            this.Name = NotNull(name);
-            this.City = NotNull(city);
-            this.Metro = NotNull(metro);
-            this.Line_id = NotNull(line_id);
-            this.Street = NotNull(street);
-            this.Building = NotNull(building);
-            this.Logo_urls = NotNull(logo_urls);
-        }
+        [JsonProperty("url")]
+        public string Url { get; set; }
 
-        private string NotNull(string value)
-        {
-            if (
-                value == null || value == "" || value == string.Empty || value.Length == 0  
-               ) return value;
-            else return "Не указано";                    
-        }     
+        [JsonProperty("alternate_url")]
+        public string AlternateUrl { get; set; }
 
+        [JsonProperty("logo_urls")]
+        public LogoUrls LogoUrls { get; set; }
+
+        [JsonProperty("vacancies_url")]
+        public string VacanciesUrl { get; set; }
+
+        [JsonProperty("trusted")]
+        public bool Trusted { get; set; }
     }
 }
+
+

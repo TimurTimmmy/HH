@@ -11,7 +11,7 @@
             <RowDefinition Height="155*"/>
             <RowDefinition Height="268*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="TbDescryption" HorizontalAlignment="Left" Margin="417,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="220" Width="342" Grid.RowSpan="2">
+        <TextBlock x:Name="TbDescryption" HorizontalAlignment="Left" Margin="417,108,-1,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="187" Width="342" Grid.RowSpan="2">
 
         </TextBlock>
         <Button x:Name="SearchButton" Content="Поиск" HorizontalAlignment="Left" Margin="23,60,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.5,0.5" Height="30" Click="Button_Click"/>
@@ -19,17 +19,18 @@
         <DataGrid x:Name="ResultGrid" HorizontalAlignment="Left" Height="225" Margin="23,104,0,0" VerticalAlignment="Top" Width="380" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="ResultGrid_SelectionChanged" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Должность" Binding="{Binding Path=Name}" Width="250" />
-                <DataGridTextColumn Header="ЗП от" Binding="{Binding Path=MinSalary}" Width="50" />
-                <DataGridTextColumn Header="ЗП до" Binding="{Binding Path=MaxSalary}" Width="50" />
+                <DataGridTextColumn Header="ЗП от" Binding="{Binding Path=Salary.From}" Width="50" />
+                <DataGridTextColumn Header="ЗП до" Binding="{Binding Path=Salary.To}" Width="50" />
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="LabelPages" Content="Страница " HorizontalAlignment="Left" Margin="58,187.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Button x:Name="NextButton" IsEnabled="False" Content=">>" HorizontalAlignment="Left" Margin="23,185.4,0,0" VerticalAlignment="Top" Width="30" Height="30" Grid.Row="1" RenderTransformOrigin="1.167,0.5" Click="NextButton_Click"/>
-        <TextBlock x:Name="UrlLabel" HorizontalAlignment="Left" Margin="440,179.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" />
+        <TextBlock x:Name="UrlLabel" HorizontalAlignment="Left" Margin="425,170,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" />
         <RadioButton GroupName="VacPP" Content="20" HorizontalAlignment="Left" Margin="31,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" IsChecked="True" Checked="RadioButton_Checked"/>
         <RadioButton GroupName="VacPP" Content="50" HorizontalAlignment="Left" Margin="73,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <RadioButton GroupName="VacPP" Content="100" HorizontalAlignment="Left" Margin="113,236.4,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <GroupBox Header="Вакасний на страницу" HorizontalAlignment="Left" Height="35" Margin="23,222.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="137"/>
         <Label x:Name="AvgSalary" Content="Средняя ЗП = " HorizontalAlignment="Left" Margin="175,62,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="MetroLabel" HorizontalAlignment="Left" Margin="620,165,-2,0" Grid.Row="1" VerticalAlignment="Top" Width="140" Height="25"/>
     </Grid>
 </Window>
