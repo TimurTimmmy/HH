@@ -65,12 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="actions\Actions.cs" />
     <Compile Include="Address.cs" />
     <Compile Include="Area.cs" />
     <Compile Include="Contacts.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employer.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="actions\Logging.cs" />
     <Compile Include="LogoUrls.cs" />
     <Compile Include="Metro.cs" />
     <Compile Include="Phone.cs" />

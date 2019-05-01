@@ -23,7 +23,7 @@ namespace HH
         public string VacanciesUrl { get; set; }
 
         [JsonProperty("trusted")]
-        public bool Trusted { get; set; }
+        public bool Trusted { get; set; }        
     }
 }
 

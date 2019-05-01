@@ -27,36 +27,37 @@ namespace HH
         {            
             switch (metro.LineId)
             {
-                case "1":                    
-                return Brushes.Red;
+                case "1":
+                    return Brushes.Red;
                 case "2":
-                return Brushes.Green;
+                    return Brushes.Green;
                 case "3":
-                return Brushes.Blue;                
+                    return Brushes.Blue;
                 case "4":
-                return Brushes.LightBlue;
+                    return Brushes.LightBlue;
                 case "5":
-                return Brushes.Brown;
+                    return Brushes.Brown;
                 case "6":
-                return Brushes.Orange;
+                    return Brushes.Orange;
                 case "7":
-                return Brushes.Purple;
+                    return Brushes.Purple;
                 case "8":
-                return Brushes.DarkGoldenrod;
+                    return Brushes.DarkGoldenrod;
                 case "9":
-                return Brushes.DarkGray;
+                    return Brushes.DarkGray;
                 case "10":
-                return Brushes.LightGreen;
+                    return Brushes.LightGreen;
                 case "11":
-                return Brushes.LightCyan;
+                    return Brushes.LightCyan;
                 case "12":
-                return Brushes.DeepSkyBlue;
+                    return Brushes.DeepSkyBlue;
                 case "14":
-                return Brushes.IndianRed;
+                    return Brushes.IndianRed;
                 default:
-                return Brushes.Black;
+                    return Brushes.Black;
             }
         }
+
     }
 }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HH"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="789">
+        Title="Поиск вакансий на HH.ru" Height="450" Width="789" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,23,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="155*"/>
@@ -16,13 +16,28 @@
         </TextBlock>
         <Button x:Name="SearchButton" Content="Поиск" HorizontalAlignment="Left" Margin="23,60,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.5,0.5" Height="30" Click="Button_Click"/>
         <TextBox x:Name="SearchText" HorizontalAlignment="Left" Height="20" Margin="23,30,0,0" TextWrapping="Wrap" Text="Системный админстратор Москва 60000" VerticalAlignment="Top" Width="312"/>
+
         <DataGrid x:Name="ResultGrid" HorizontalAlignment="Left" Height="225" Margin="23,104,0,0" VerticalAlignment="Top" Width="380" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="ResultGrid_SelectionChanged" Grid.RowSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Должность" Binding="{Binding Path=Name}" Width="250" />
-                <DataGridTextColumn Header="ЗП от" Binding="{Binding Path=Salary.From}" Width="50" />
-                <DataGridTextColumn Header="ЗП до" Binding="{Binding Path=Salary.To}" Width="50" />
+                <DataGridTextColumn Header="Должность" Binding="{Binding Path = Name}" Width="250" />
+                <DataGridTextColumn Header="ЗП от" Binding="{Binding Path = Salary.From}" Width="50" />
+                <DataGridTextColumn Header="ЗП до" Binding="{Binding Path = Salary.To}" Width="50" />
             </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Background="LightGray">
+                        <TextBlock Text="{Binding Path = Employer.Name}"/>
+                        <TextBlock Text="   " />
+                        <TextBlock> 
+                            <Hyperlink NavigateUri="{Binding EmplUrl ,RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" RequestNavigate="Hyperlink_RequestNavigate">
+                                <TextBlock Text="{Binding EmplUrl ,RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
+
         <Label x:Name="LabelPages" Content="Страница " HorizontalAlignment="Left" Margin="58,187.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Button x:Name="NextButton" IsEnabled="False" Content=">>" HorizontalAlignment="Left" Margin="23,185.4,0,0" VerticalAlignment="Top" Width="30" Height="30" Grid.Row="1" RenderTransformOrigin="1.167,0.5" Click="NextButton_Click"/>
         <TextBlock x:Name="UrlLabel" HorizontalAlignment="Left" Margin="425,170,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" />
@@ -32,5 +47,11 @@
         <GroupBox Header="Вакасний на страницу" HorizontalAlignment="Left" Height="35" Margin="23,222.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="137"/>
         <Label x:Name="AvgSalary" Content="Средняя ЗП = " HorizontalAlignment="Left" Margin="175,62,0,0" VerticalAlignment="Top" Width="160"/>
         <Label x:Name="MetroLabel" HorizontalAlignment="Left" Margin="620,165,-2,0" Grid.Row="1" VerticalAlignment="Top" Width="140" Height="25"/>
+        <Image x:Name="EmplLogo" HorizontalAlignment="Left" Height="75" Margin="680,15,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="ExcelButton" HorizontalAlignment="Left" Margin="146,186,0,0" Grid.Row="1" VerticalAlignment="Top" Width="30" Height="30" Click="ExcelButton_Click">
+            <StackPanel>
+                <Image Source="http://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/ms-excel-icon.png" />
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

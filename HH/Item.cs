@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using HH.actions;
+using Newtonsoft.Json;
 
 namespace HH
 {
@@ -72,6 +75,36 @@ namespace HH
 
         [JsonProperty("contacts")]
         public Contacts Contacts { get; set; }
+
+        // Расчет средней ЗП по передаваемому списку.
+        // Сложение минимума и максимума деленных на кол-во элементов списка, и разделенных на два.
+        public static double AVGL(List<Item> list)
+        {
+            int max = 0;
+            int min = 0;
+            try
+            {
+                foreach (var it in list)
+                {
+                    if (it.Salary != null)
+                    {
+                        max += Convert.ToInt32(it.Salary.From) / list.Count;
+                        min += Convert.ToInt32(it.Salary.To) / list.Count;
+                    }
+                    else
+                    {
+                        max += 0;
+                        min += 0;
+                    }                        
+                }
+                return (max + min) / 2;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteLog(e.Message + "\n" + e.StackTrace + "\n");
+                return 0;
+            }
+        }
     }
 }
 
